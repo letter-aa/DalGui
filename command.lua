@@ -19,7 +19,6 @@ local LP = game:GetService("Players").LocalPlayer
 local Character = LP.Character
 local Humanoid = Character.Humanoid
 local mouse = LP:GetMouse()
-Humanoid.UseJumpPower = true
 
 --[local array = {}
 --local i = 0
@@ -42,7 +41,7 @@ LP.Chatted:Connect(function(chat)
         Humanoid.WalkSpeed = ChatArgs[3]
     end
     if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "jump" then
-        Humanoid.JumpPower = ChatArgs[3]
+        Humanoid.JumpHeight = ChatArgs[3]
     end
     if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "sit" then
         Humanoid.Sit = true
