@@ -1,9 +1,12 @@
 function FindPlayer(name) -- name = string provided to look for player
-	for i,v in pairs(game.Players:GetPlayers()) do  -- iterating though players
-		if v.DisplayName:lower():sub(1,#name) == name:lower() then    -- checking to see if player name matches the provided string
-			return v
-		end
-	end
+    for i,v in pairs(game.Players:GetPlayers()) do  -- iterating though players
+        if v.DisplayName:lower():sub(1,#name) == name:lower() then    -- checking to see if player name matches the provided string
+            return v 
+        end
+        if v.Name:lower():sub(1,#name) == name:lower() then
+            return v
+        end
+    end
 end
 var = {
 	a = 1,
@@ -37,7 +40,7 @@ local mouse = LP:GetMouse()
 LP.Chatted:Connect(function(chat)
 	local ChatArgs = string.split(chat," ")
 	if ChatArgs[3] == "me" then
-		ChatArgs[3] = LP.Name
+		ChatArgs[3] = LP.Name or game:GetService("Players").LocalPlayer.DisplayName
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "speed" then
 		Humanoid.WalkSpeed = ChatArgs[3]
