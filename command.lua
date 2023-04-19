@@ -12,7 +12,9 @@ var = {
 	c = 1,
 	d = 1,
 	e = 1,
-	guiopened = false
+	guiopened = false,
+	f = 1,
+    g = 1
 }
 local players = game:GetService("Players")
 local LP = game:GetService("Players").LocalPlayer
@@ -91,17 +93,10 @@ LP.Chatted:Connect(function(chat)
 		var.d = 0
 		local ff = Instance.new("ForceField", Character)
 		ff.Visible = true
-		rs = game:GetService("RunService")
+		local rs = game:GetService("RunService")
 		rs.Heartbeat:Connect(function()
 			if var.d == 0 then
 				Humanoid.Health = 100
-				for i, v in pairs(workspace:GetChildren()) do
-					if v:IsA("Part") then
-						v.Touched:Connect(function()
-							Humanoid.Health = 100
-						end)
-					end
-				end
 			end
 		end)
 	end
@@ -123,7 +118,7 @@ LP.Chatted:Connect(function(chat)
 		end
 		local themessage = string.gsub(ChatArgs[3],ChatArgs[3].sub(math.random(1,#ChatArgs[3]), math.random(1,#ChatArgs[3])),soos)
 		local checkchat = coroutine.create(function()
-			player.Chatted:Connect(function(chat)
+			LP.Chatted:Connect(function(chat)
 				if chat == themessage then
 					var.stopsus = 1
 				end
@@ -145,17 +140,95 @@ LP.Chatted:Connect(function(chat)
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "endspin" then
 		var.e = 1
 	end
-	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "blockify" then
-		for i, v in pairs(Character:GetChildren()) do
-			if v:IsA("Accessory") or v:IsA("Hat") then
-				if v.Handle:WaitForChild("SpecialMesh") then
-					v.Handle.SpecialMesh:Destroy()
-				elseif v.Handle:WaitForChild("Mesh") then
-					v.Handle.Mesh:Destroy()
+	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "esp" then
+		var.f = 0
+		while var.f == 0 do
+			wait()
+			for i, v in pairs(workspace:GetDescendants()) do
+				if v:IsA("Part") then
+					v.Transparency = 0.5
+				end
+			end
+			for i, v in pairs(workspace:GetChildren()) do
+				if v:IsA("Part") then
+					v.Transparency = 0.5
+				end
+			end
+			for i, v in pairs(players:GetChildren()) do
+				if v.Name ~= LP.Name then
+					for _,bodyparts in pairs(v.Character:GetChildren()) do
+						if bodyparts:IsA("Humanoid") then
+                            bodyparts.NameOcclusion = Enum.NameOcclusion.NoOcclusion
+							bodyparts.HealthDisplayType = Enum.HumanoidHealthDisplayType.AlwaysOn
+							bodyparts.NameDisplayDistance = 99999999999999999999999999999999
+							bodyparts.HealthDisplayDistance = 99999999999999999999999999999999
+						end
+						if bodyparts:IsA("MeshPart") or bodyparts:IsA("Part") then
+							if not bodyparts:FindFirstChild("SelectionBox") then
+								Instance.new("SelectionBox", bodyparts).Adornee = bodyparts
+								bodyparts.Transparency = 0
+							end
+						end
+					end
+				end
+			end
+			for i, v in pairs(Character:GetChildren()) do
+				if v:IsA("Part") or v:IsA("MeshPart") then
+					if v.Name ~= "HumanoidRootPart" then
+						v.Transparency = 0
+					elseif v.Name == "HumanoidRootPart" then
+						v.Transparency = 1
+					end
 				end
 			end
 		end
 	end
+	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "endesp" then
+		var.f = 1
+		for i, v in pairs(workspace:GetDescendants()) do
+			if v:IsA("Part") then
+				v.Transparency = 0
+			end
+		end
+		for i, v in pairs(workspace:GetChildren()) do
+			if v:IsA("Part") then
+				v.Transparency = 0
+			end
+		end
+		for i, v in pairs(players:GetChildren()) do
+			if v.Name ~= LP.Name then
+				for _,bodyparts in pairs(v.Character:GetChildren()) do
+					if bodyparts:IsA("Humanoid") then
+						bodyparts.HealthDisplayType = Enum.HumanoidHealthDisplayType.DisplayWhenDamaged
+						bodyparts.NameDisplayDistance = 100
+						bodyparts.HealthDisplayDistance = 100
+					end
+					if bodyparts:IsA("MeshPart") or bodyparts:IsA("Part") then
+						for a,p in pairs(bodyparts:GetChildren()) do
+							if p:IsA("SelectionBox") then
+								p:Destroy()
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "blockify" then
+		if Character:FindFirstChild("Head").Mesh then
+            Character:FindFirstChild("Head").Mesh:Destroy()
+        end
+        if Character:WaitForChild("CharacterMesh") then
+            for i, v in pairs(Character:GetChildren()) do
+                if v.Name == "CharacterMesh" and v:IsA("CharacterMesh") then
+                    v:Destroy()
+                end
+            end
+        end
+	end
+	LP.CharacterAdded:Connect(function()
+		var.guiopened = false
+	end)
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "cmds" then
 		if var.guiopened == false then
 			var.guiopened = true
@@ -230,7 +303,7 @@ LP.Chatted:Connect(function(chat)
 			ScrollingFrame1.BorderSizePixel = 0
 			ScrollingFrame1.Position = UDim2.new(0.03, 0,0.025, 0)
 			ScrollingFrame1.Size = UDim2.new(0, 216,0, 263)
-			ScrollingFrame1.CanvasSize = UDim2.new(0, 0,4.475, 0)
+			ScrollingFrame1.CanvasSize = UDim2.new(0, 0,4.71, 0)
 
 			local UIListLayout1 = Instance.new("UIListLayout")
 			UIListLayout1.Parent = ScrollingFrame1
@@ -306,6 +379,9 @@ LP.Chatted:Connect(function(chat)
 				"/e spin (int)",
 				"/e endspin",
 				"/e cmds",
+                "/e esp",
+                "/e endesp",
+                "/e blockify"
 			}
 
 			for i, v in ipairs(commands) do
@@ -399,7 +475,7 @@ LP.Chatted:Connect(function(chat)
 			TextLabel6.TextColor3 = Color3.fromRGB(255,255,255)
 
 
-			rbxassets = {
+			local rbxassets = {
 				"rbxassetid://13165414408",
 				"rbxassetid://13165415560",
 				"rbxassetid://13165416738",
@@ -419,7 +495,7 @@ LP.Chatted:Connect(function(chat)
 			ImageButton2.Position = UDim2.new(0.843, 0,0.423, 0)
 			ImageButton2.Size = UDim2.new(0, 19,0, 19)
 			ImageButton2.Image = rbxassets[#rbxassets]
-			rbxassetsbackwards = {}
+			local rbxassetsbackwards = {}
 			for i,v in ipairs(rbxassets) do
 				rbxassetsbackwards[i] = rbxassets[(#rbxassets - i) + 1]
 			end
