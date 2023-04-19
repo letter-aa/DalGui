@@ -19,7 +19,7 @@ local LP = game:GetService("Players").LocalPlayer
 local Character = LP.Character
 local Humanoid = Character.Humanoid
 local mouse = LP:GetMouse()
-
+Humanoid.UseJumpPower = true
 
 --[local array = {}
 --local i = 0
