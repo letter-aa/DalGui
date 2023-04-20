@@ -291,7 +291,9 @@ LP.Chatted:Connect(function(chat)
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "unfly" then
 		var.fly = 1
-		Character:FindFirstChild("HumanoidRootPart").BodyVelocity:Destroy()
+		if Character:FindFirstChild("HumanoidRootPart").BodyVelocity then
+			Character:FindFirstChild("HumanoidRootPart").BodyVelocity:Destroy()
+		end
 		for i, v in ipairs(key) do
 			key[i] = 0
 		end
