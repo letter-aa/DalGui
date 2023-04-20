@@ -287,6 +287,15 @@ LP.Chatted:Connect(function(chat)
 				end
 			end)
 			BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector * Vector3.new(key.WS * DefaultNumber,DefaultNumber,key.WS * DefaultNumber)
+			coroutine.resume(coroutine.create(function()
+				local tweenInfo = TweenInfo.new(
+					1.5,
+					Enum.EasingStyle.Cubic,
+					Enum.EasingDirection.InOut
+				)
+				local TweenService = game:GetService("TweenService")
+				TweenService:Create(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,tweenInfo,{CFrame = CFrame.lookAt(Character:FindFirstChild("HumanoidRootPart").Position, workspace.CurrentCamera.CFrame.LookVector)}):Play()
+			end)
 		end	
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "unfly" then
