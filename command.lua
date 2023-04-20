@@ -256,6 +256,18 @@ LP.Chatted:Connect(function(chat)
 		var.fly = 0
 		local BodyVelocity = Instance.new("BodyVelocity", game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart"))
 		local DefaultNumber = ChatArgs[3]
+		coroutine.resume(coroutine.create(function()
+			while var.fly == 0 do 
+				local tweenInfo = TweenInfo.new(
+					1.5,
+					Enum.EasingStyle.Cubic,
+					Enum.EasingDirection.InOut
+				)
+				local TweenService = game:GetService("TweenService")
+				TweenService:Create(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,tweenInfo,{CFrame = CFrame.lookAt(Character:FindFirstChild("HumanoidRootPart").Position, workspace.CurrentCamera.CFrame.LookVector)}):Play()
+				wait(1.5)
+			end
+		end))
 		while var.fly == 0 do
 			wait()
 			UIS.InputBegan:Connect(function(input)
@@ -287,15 +299,6 @@ LP.Chatted:Connect(function(chat)
 				end
 			end)
 			BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector * Vector3.new(key.WS * DefaultNumber,DefaultNumber,key.WS * DefaultNumber)
-			coroutine.resume(coroutine.create(function()
-				local tweenInfo = TweenInfo.new(
-					1.5,
-					Enum.EasingStyle.Cubic,
-					Enum.EasingDirection.InOut
-				)
-				local TweenService = game:GetService("TweenService")
-				TweenService:Create(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,tweenInfo,{CFrame = CFrame.lookAt(Character:FindFirstChild("HumanoidRootPart").Position, workspace.CurrentCamera.CFrame.LookVector)}):Play()
-			end))
 		end
 	end
 	
