@@ -54,20 +54,20 @@ LP.Chatted:Connect(function(chat)
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "move" then
 		var.a = 0
-		while players[FindPlayer(ChatArgs[3]).Name].Character.HumanoidRootPart.Position and var.a == 0 do
-			Humanoid:MoveTo(players[FindPlayer(ChatArgs[3]).Name].Character.HumanoidRootPart.Position)
+		while players[FindPlayer(ChatArgs[3])].Character.HumanoidRootPart.Position and var.a == 0 do
+			Humanoid:MoveTo(players[FindPlayer(ChatArgs[3])].Character.HumanoidRootPart.Position)
 			task.wait(0.0000001)
 		end
 	elseif ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "endmove" then
 		var.a = 1
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "tp" then
-		Character.HumanoidRootPart.CFrame = players[FindPlayer(ChatArgs[3]).Name].Character.HumanoidRootPart.CFrame
+		Character.HumanoidRootPart.CFrame = players[FindPlayer(ChatArgs[3])].Character.HumanoidRootPart.CFrame
 	end
 
 
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "focus" then
-		workspace.CurrentCamera.CameraSubject = players[FindPlayer(ChatArgs[3]).Name].Character.PrimaryPart
+		workspace.CurrentCamera.CameraSubject = players[FindPlayer(ChatArgs[3])].Character.PrimaryPart
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "unfocus" then
 		workspace.CurrentCamera.CameraSubject = Character.PrimaryPart
@@ -86,7 +86,7 @@ LP.Chatted:Connect(function(chat)
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "annoy" then
 		var.c = 0
 		while var.c == 0 do
-			Character:MoveTo(players[FindPlayer(ChatArgs[3]).Name].Character.HumanoidRootPart.Position)
+			Character:MoveTo(players[FindPlayer(ChatArgs[3])].Character.HumanoidRootPart.Position)
 			task.wait(0.0000000000000000000000001)
 		end
 	end
