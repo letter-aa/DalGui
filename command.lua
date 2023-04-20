@@ -1,12 +1,12 @@
 function FindPlayer(name) -- name = string provided to look for player
-    for i,v in pairs(game.Players:GetPlayers()) do  -- iterating though players
-        if v.DisplayName:lower():sub(1,#name) == name:lower() then    -- checking to see if player name matches the provided string
-            return v
-        end
-        if v.Name:lower():sub(1,#name) == name:lower() then
-            return v
-        end
-    end
+	for i,v in pairs(game.Players:GetPlayers()) do  -- iterating though players
+		if v.DisplayName:lower():sub(1,#name) == name:lower() then    -- checking to see if player name matches the provided string
+			return v
+		end
+		if v.Name:lower():sub(1,#name) == name:lower() then
+			return v
+		end
+	end
 end
 var = {
 	a = 1,
@@ -17,7 +17,7 @@ var = {
 	e = 1,
 	guiopened = false,
 	f = 1,
-    	g = 1,
+	g = 1,
 	h = 1
 }
 local players = game:GetService("Players")
@@ -162,7 +162,7 @@ LP.Chatted:Connect(function(chat)
 				if v.Name ~= LP.Name then
 					for _,bodyparts in pairs(v.Character:GetChildren()) do
 						if bodyparts:IsA("Humanoid") then
-                            bodyparts.NameOcclusion = Enum.NameOcclusion.NoOcclusion
+							bodyparts.NameOcclusion = Enum.NameOcclusion.NoOcclusion
 							bodyparts.HealthDisplayType = Enum.HumanoidHealthDisplayType.AlwaysOn
 							bodyparts.NameDisplayDistance = 99999999999999999999999999999999
 							bodyparts.HealthDisplayDistance = 99999999999999999999999999999999
@@ -219,26 +219,26 @@ LP.Chatted:Connect(function(chat)
 		end
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "spam" then
-		h = 0
-		while h == 0 do
+		var.h = 0
+		while var.h == 0 do
 			game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ChatArgs[3], "All")
 			wait(ChatArgs[4])	
 		end
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "endspam" then
-		h = 1
+		var.h = 1
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "blockify" then
 		if Character:FindFirstChild("Head").Mesh then
-            Character:FindFirstChild("Head").Mesh:Destroy()
-        end
-        if Character:WaitForChild("CharacterMesh") then
-            for i, v in pairs(Character:GetChildren()) do
-                if v.Name == "CharacterMesh" and v:IsA("CharacterMesh") then
-                    v:Destroy()
-                end
-            end
-        end
+			Character:FindFirstChild("Head").Mesh:Destroy()
+		end
+		if Character:WaitForChild("CharacterMesh") then
+			for i, v in pairs(Character:GetChildren()) do
+				if v.Name == "CharacterMesh" and v:IsA("CharacterMesh") then
+					v:Destroy()
+				end
+			end
+		end
 	end
 	LP.CharacterAdded:Connect(function()
 		var.guiopened = false
@@ -393,9 +393,9 @@ LP.Chatted:Connect(function(chat)
 				"/e spin (int)",
 				"/e endspin",
 				"/e cmds",
-                "/e esp",
-                "/e endesp",
-                "/e blockify"
+				"/e esp",
+				"/e endesp",
+				"/e blockify"
 			}
 
 			for i, v in ipairs(commands) do
