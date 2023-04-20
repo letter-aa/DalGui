@@ -295,9 +295,10 @@ LP.Chatted:Connect(function(chat)
 				)
 				local TweenService = game:GetService("TweenService")
 				TweenService:Create(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,tweenInfo,{CFrame = CFrame.lookAt(Character:FindFirstChild("HumanoidRootPart").Position, workspace.CurrentCamera.CFrame.LookVector)}):Play()
-			end)
-		end	
+			end))
+		end
 	end
+	
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "unfly" then
 		var.fly = 1
 		if Character:FindFirstChild("HumanoidRootPart").BodyVelocity then
