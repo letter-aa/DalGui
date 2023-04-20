@@ -8,6 +8,12 @@ function FindPlayer(name) -- name = string provided to look for player
 		end
 	end
 end
+key = {
+	WS = 0,
+	AD = 0,
+}
+
+local UIS = game:GetService("UserInputService")
 var = {
 	a = 1,
 	stopsus = 1,
@@ -18,7 +24,8 @@ var = {
 	guiopened = false,
 	f = 1,
 	g = 1,
-	h = 1
+	h = 1,
+	fly = 1
 }
 local players = game:GetService("Players")
 local LP = game:GetService("Players").LocalPlayer
@@ -238,6 +245,50 @@ LP.Chatted:Connect(function(chat)
 					v:Destroy()
 				end
 			end
+		end
+	end
+	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "fly" then
+		var.fly = 0
+		local BodyVelocity = Instance.new("BodyVelocity", game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart"))
+		local DefaultNumber = ChatArgs[3]
+		while var.fly == 0 do
+			wait()
+			UIS.InputBegan:Connect(function(input)
+				if input.KeyCode == Enum.KeyCode.W then
+					key.WS = 1
+				end
+				if input.KeyCode == Enum.KeyCode.A then
+					key.AD = 1
+				end
+				if input.KeyCode == Enum.KeyCode.S then
+					key.WS = -1
+				end
+				if input.KeyCode == Enum.KeyCode.D then
+					key.AD = -1
+				end
+			end)
+			UIS.InputEnded:Connect(function(input)
+				if input.KeyCode == Enum.KeyCode.W then
+					key.WS = 0
+				end
+				if input.KeyCode == Enum.KeyCode.A then
+					key.AD = 0
+				end
+				if input.KeyCode == Enum.KeyCode.S then
+					key.WS = 0
+				end
+				if input.KeyCode == Enum.KeyCode.D then
+					key.AD = 0
+				end
+			end)
+			BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector * Vector3.new(key.WS * DefaultNumber,DefaultNumber,key.WS * DefaultNumber)
+		end	
+	end
+	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "unfly" then
+		var.fly = 1
+		Character:FindFirstChild("HumanoidRootPart").BodyVelocity:Destroy()
+		for i, v in ipairs(key) do
+			key[i] = 0
 		end
 	end
 	LP.CharacterAdded:Connect(function()
