@@ -17,7 +17,8 @@ var = {
 	e = 1,
 	guiopened = false,
 	f = 1,
-    g = 1
+    	g = 1,
+	h = 1
 }
 local players = game:GetService("Players")
 local LP = game:GetService("Players").LocalPlayer
@@ -216,6 +217,16 @@ LP.Chatted:Connect(function(chat)
 				end
 			end
 		end
+	end
+	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "spam" then
+		h = 0
+		while h == 0 do
+			game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ChatArgs[3], "All")
+			wait(ChatArgs[4])	
+		end
+	end
+	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "endspam" then
+		h = 1
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "blockify" then
 		if Character:FindFirstChild("Head").Mesh then
