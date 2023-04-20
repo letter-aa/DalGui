@@ -54,7 +54,12 @@ LP.Chatted:Connect(function(chat)
 		Humanoid.WalkSpeed = ChatArgs[3]
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "jump" then
-		Humanoid.JumpHeight = ChatArgs[3]
+		if Humanoid.JumpHeight then
+			Humanoid.JumpHeight = ChatArgs[3]
+		end
+		if Humanoid.JumpPower then
+			Humanoid.JumpPower = ChatArgs[3]
+		end
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "sit" then
 		Humanoid.Sit = true
