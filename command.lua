@@ -1,10 +1,10 @@
 function FindPlayer(name) -- name = string provided to look for player
     for i,v in pairs(game.Players:GetPlayers()) do  -- iterating though players
         if v.DisplayName:lower():sub(1,#name) == name:lower() then    -- checking to see if player name matches the provided string
-            return v 
+            return v.Name
         end
         if v.Name:lower():sub(1,#name) == name:lower() then
-            return v
+            return v.Name
         end
     end
 end
