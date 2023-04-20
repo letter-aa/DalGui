@@ -694,3 +694,9 @@ LP.Chatted:Connect(function(chat)
 		end
 	end
 end)
+
+local msg = Instance.new("Message")
+msg.Text = "Welcome to DalGui! Type \"/e cmds\" in the chat to check out the commands!"
+msg.Parent = workspace
+wait(5)
+msg:Destroy()
