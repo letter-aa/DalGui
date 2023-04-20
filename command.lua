@@ -69,7 +69,7 @@ LP.Chatted:Connect(function(chat)
 		var.a = 1
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "tp" then
-		Character.HumanoidRootPart.CFrame = players[FindPlayer(ChatArgs[3]).Name].Character.HumanoidRootPart.CFrame
+		Character.HumanoidRootPart.CFrame = players[FindPlayer(ChatArgs[3])].Character.HumanoidRootPart.CFrame
 	end
 
 
