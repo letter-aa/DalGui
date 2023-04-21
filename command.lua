@@ -286,7 +286,7 @@ LP.Chatted:Connect(function(chat)
 					key.AD = 0
 				end
 			end)
-			BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector * Vector3.new(key.WS * DefaultNumber,DefaultNumber,key.WS * DefaultNumber)
+			BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector * Vector3.new(key.WS * DefaultNumber,key.WS * DefaultNumber,key.WS * DefaultNumber)
 		end
 	end
 	
