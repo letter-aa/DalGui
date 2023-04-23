@@ -287,7 +287,7 @@ LP.Chatted:Connect(function(chat)
 					key.AD = 0
 				end
 			end)
-            Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.lookAt(Character:FindFirstChild("HumanoidRootPart").Position, Character:FindFirst("HumanoidRootPart").Position + workspace.CurrentCamera.CFrame.LookVector)
+            Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.lookAt(Character:FindFirstChild("HumanoidRootPart").Position, Character:FindFirstChild("HumanoidRootPart").Position + workspace.CurrentCamera.CFrame.LookVector)
 			BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector * Vector3.new(key.WS * DefaultNumber,key.WS * DefaultNumber,key.WS * DefaultNumber)
 		end
 	end
