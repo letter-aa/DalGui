@@ -68,7 +68,7 @@ LP.Chatted:Connect(function(chat)
 		var.a = 0
 		while players[FindPlayer(ChatArgs[3])].Character.HumanoidRootPart.Position and var.a == 0 do
 			Humanoid:MoveTo(players[FindPlayer(ChatArgs[3])].Character.HumanoidRootPart.Position)
-			task.wait(0.0000001)
+			wait()
 		end
 	elseif ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "endmove" then
 		var.a = 1
@@ -99,7 +99,7 @@ LP.Chatted:Connect(function(chat)
 		var.c = 0
 		while var.c == 0 do
 			Character:MoveTo(players[FindPlayer(ChatArgs[3])].Character.HumanoidRootPart.Position)
-			task.wait(0.0000000000000000000000001)
+			wait()
 		end
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "unannoy" then
@@ -287,7 +287,7 @@ LP.Chatted:Connect(function(chat)
 					key.AD = 0
 				end
 			end)
-            Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.lookAt(Character:FindFirstChild("HumanoidRootPart").Position, Character:FindFirstChild("HumanoidRootPart").Position + workspace.CurrentCamera.CFrame.LookVector)
+            		Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.lookAt(Character:FindFirstChild("HumanoidRootPart").Position, Character:FindFirstChild("HumanoidRootPart").Position + workspace.CurrentCamera.CFrame.LookVector)
 			BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector * Vector3.new(key.WS * DefaultNumber,key.WS * DefaultNumber,key.WS * DefaultNumber)
 		end
 	end
