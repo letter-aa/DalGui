@@ -256,6 +256,7 @@ LP.Chatted:Connect(function(chat)
 		var.fly = 0
 		local BodyVelocity = Instance.new("BodyVelocity", game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart"))
 		local DefaultNumber = ChatArgs[3]
+        Humanoid.PlatformStand = true
 		while var.fly == 0 do
 			wait()
 			UIS.InputBegan:Connect(function(input)
@@ -286,12 +287,14 @@ LP.Chatted:Connect(function(chat)
 					key.AD = 0
 				end
 			end)
+            Character.HumanoidRootPart.CFrame = CFrame.lookAt(Character.HumanoidRootPart.Position, workspace.kingdudely_alt.HumanoidRootPart.Position + workspace.CurrentCamera.CFrame.LookVector)
 			BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector * Vector3.new(key.WS * DefaultNumber,key.WS * DefaultNumber,key.WS * DefaultNumber)
 		end
 	end
 	
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "unfly" then
 		var.fly = 1
+        Humanoid.PlatformStand = false
 		if Character:FindFirstChild("HumanoidRootPart").BodyVelocity then
 			Character:FindFirstChild("HumanoidRootPart").BodyVelocity:Destroy()
 		end
