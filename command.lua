@@ -287,7 +287,7 @@ LP.Chatted:Connect(function(chat)
 					key.AD = 0
 				end
 			end)
-            Character.HumanoidRootPart.CFrame = CFrame.lookAt(Character.HumanoidRootPart.Position, workspace.kingdudely_alt.HumanoidRootPart.Position + workspace.CurrentCamera.CFrame.LookVector)
+            Character.HumanoidRootPart.CFrame = CFrame.lookAt(Character.HumanoidRootPart.Position, Character.HumanoidRootPart.Position + workspace.CurrentCamera.CFrame.LookVector)
 			BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector * Vector3.new(key.WS * DefaultNumber,key.WS * DefaultNumber,key.WS * DefaultNumber)
 		end
 	end
