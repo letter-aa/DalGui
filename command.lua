@@ -11,6 +11,8 @@ end
 key = {
 	WS = 0,
 	AD = 0,
+    A = 0,
+    D = 0
 }
 
 local UIS = game:GetService("UserInputService")
@@ -264,13 +266,15 @@ LP.Chatted:Connect(function(chat)
 					key.WS = 1
 				end
 				if input.KeyCode == Enum.KeyCode.A then
-					key.AD = 1
+					key.AD = -1
+                    key.A = 1
 				end
 				if input.KeyCode == Enum.KeyCode.S then
 					key.WS = -1
 				end
 				if input.KeyCode == Enum.KeyCode.D then
-					key.AD = -1
+					key.AD = 1
+                    key.D = 1
 				end
 			end)
 			UIS.InputEnded:Connect(function(input)
@@ -279,16 +283,22 @@ LP.Chatted:Connect(function(chat)
 				end
 				if input.KeyCode == Enum.KeyCode.A then
 					key.AD = 0
+                    key.A = 0
 				end
 				if input.KeyCode == Enum.KeyCode.S then
 					key.WS = 0
 				end
 				if input.KeyCode == Enum.KeyCode.D then
 					key.AD = 0
+                    key.D = 0
 				end
 			end)
-            		Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.lookAt(Character:FindFirstChild("HumanoidRootPart").Position, Character:FindFirstChild("HumanoidRootPart").Position + workspace.CurrentCamera.CFrame.LookVector)
-			BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector * Vector3.new(key.WS * DefaultNumber,key.WS * DefaultNumber,key.WS * DefaultNumber)
+            Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.lookAt(Character:FindFirstChild("HumanoidRootPart").Position, Character:FindFirstChild("HumanoidRootPart").Position + workspace.CurrentCamera.CFrame.LookVector)
+			if key.AD == 0 then
+                BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector * Vector3.new(key.WS * DefaultNumber,key.WS * DefaultNumber,key.WS * DefaultNumber)
+            else
+                BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector:Cross(Vector3.new(0,key.AD,0)) * Vector3.new(1 * DefaultNumber,1 * DefaultNumber,1 * DefaultNumber)
+            end
 		end
 	end
 	
