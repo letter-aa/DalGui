@@ -389,7 +389,7 @@ LP.Chatted:Connect(function(chat)
 			ScrollingFrame1.BorderSizePixel = 0
 			ScrollingFrame1.Position = UDim2.new(0.03, 0,0.025, 0)
 			ScrollingFrame1.Size = UDim2.new(0, 216,0, 263)
-			ScrollingFrame1.CanvasSize = UDim2.new(0, 0,4.71, 0)
+			ScrollingFrame1.CanvasSize = UDim2.new(0, 0,5.65, 0)
 
 			local UIListLayout1 = Instance.new("UIListLayout")
 			UIListLayout1.Parent = ScrollingFrame1
@@ -467,7 +467,9 @@ LP.Chatted:Connect(function(chat)
 				"/e cmds",
 				"/e esp",
 				"/e endesp",
-				"/e blockify"
+				"/e blockify",
+                "/e fly (int)",
+                "/e unfly"
 			}
 
 			for i, v in ipairs(commands) do
