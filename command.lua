@@ -34,6 +34,48 @@ local LP = game:GetService("Players").LocalPlayer
 local Character = LP.Character
 local Humanoid = Character.Humanoid
 local mouse = LP:GetMouse()
+function ESP() 
+    for i, v in pairs(workspace:GetDescendants()) do
+        if v:IsA("Part") then
+            v.Transparency = 0.5
+        end
+    end
+
+    for i, v in pairs(workspace:GetChildren()) do
+        if v:IsA("Part") then
+            v.Transparency = 0.5
+        end
+    end
+
+    for i, v in pairs(players:GetChildren()) do
+        if v.Name ~= LP.Name then
+            for _,bodyparts in pairs(v.Character:GetChildren()) do
+                if bodyparts:IsA("Humanoid") then
+                    bodyparts.NameOcclusion = Enum.NameOcclusion.NoOcclusion
+                    bodyparts.HealthDisplayType = Enum.HumanoidHealthDisplayType.AlwaysOn
+                    bodyparts.NameDisplayDistance = 99999999999999999999999999999999
+                    bodyparts.HealthDisplayDistance = 99999999999999999999999999999999
+                end
+                if bodyparts:IsA("MeshPart") or bodyparts:IsA("Part") then
+                    if not bodyparts:FindFirstChild("SelectionBox") then
+                        Instance.new("SelectionBox", bodyparts).Adornee = bodyparts
+                        bodyparts.Transparency = 0
+                    end
+                end
+            end
+        end
+    end
+
+    for i, v in pairs(Character:GetChildren()) do
+        if v:IsA("Part") or v:IsA("MeshPart") then
+            if v.Name ~= "HumanoidRootPart" then
+                v.Transparency = 0
+            elseif v.Name == "HumanoidRootPart" then
+                v.Transparency = 1
+            end
+        end
+    end
+end
 
 --[local array = {}
 --local i = 0
@@ -160,46 +202,12 @@ LP.Chatted:Connect(function(chat)
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "esp" then
 		var.f = 0
-		while var.f == 0 do
-			wait()
-			for i, v in pairs(workspace:GetDescendants()) do
-				if v:IsA("Part") then
-					v.Transparency = 0.5
-				end
-			end
-			for i, v in pairs(workspace:GetChildren()) do
-				if v:IsA("Part") then
-					v.Transparency = 0.5
-				end
-			end
-			for i, v in pairs(players:GetChildren()) do
-				if v.Name ~= LP.Name then
-					for _,bodyparts in pairs(v.Character:GetChildren()) do
-						if bodyparts:IsA("Humanoid") then
-							bodyparts.NameOcclusion = Enum.NameOcclusion.NoOcclusion
-							bodyparts.HealthDisplayType = Enum.HumanoidHealthDisplayType.AlwaysOn
-							bodyparts.NameDisplayDistance = 99999999999999999999999999999999
-							bodyparts.HealthDisplayDistance = 99999999999999999999999999999999
-						end
-						if bodyparts:IsA("MeshPart") or bodyparts:IsA("Part") then
-							if not bodyparts:FindFirstChild("SelectionBox") then
-								Instance.new("SelectionBox", bodyparts).Adornee = bodyparts
-								bodyparts.Transparency = 0
-							end
-						end
-					end
-				end
-			end
-			for i, v in pairs(Character:GetChildren()) do
-				if v:IsA("Part") or v:IsA("MeshPart") then
-					if v.Name ~= "HumanoidRootPart" then
-						v.Transparency = 0
-					elseif v.Name == "HumanoidRootPart" then
-						v.Transparency = 1
-					end
-				end
-			end
-		end
+        ESP()
+		players.PlayerAdded:Connect(function()
+            if var.f == 0 then
+                ESP()
+            end
+        end)
 	end
 	if ChatArgs[1]:lower() == "/e" and ChatArgs[2]:lower() == "endesp" then
 		var.f = 1
