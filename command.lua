@@ -397,7 +397,6 @@ LP.Chatted:Connect(function(chat)
 			ScrollingFrame1.BorderSizePixel = 0
 			ScrollingFrame1.Position = UDim2.new(0.03, 0,0.025, 0)
 			ScrollingFrame1.Size = UDim2.new(0, 216,0, 263)
-			ScrollingFrame1.CanvasSize = UDim2.new(0, 0,5.65, 0)
 
 			local UIListLayout1 = Instance.new("UIListLayout")
 			UIListLayout1.Parent = ScrollingFrame1
@@ -476,8 +475,8 @@ LP.Chatted:Connect(function(chat)
 				"/e esp",
 				"/e endesp",
 				"/e blockify",
-                "/e fly (int)",
-                "/e unfly"
+                		"/e fly (int)",
+                		"/e unfly"
 			}
 
 			for i, v in ipairs(commands) do
@@ -494,6 +493,12 @@ LP.Chatted:Connect(function(chat)
 					task.wait(0.05)
 				end
 			end)
+			for i, v in pairs(game.StarterGui.ScreenGui.ScrollingFrame:GetChildren()) do 
+				if v:IsA("Frame") then 
+					ScrollingFrame1.CanvasSize = UDim2.new(0,0,0,v.Size.Height.Offset * #commands)
+				end 
+			end
+			
 
 			--SETTINGS--
 			local Frame4 = Frame1:Clone()
